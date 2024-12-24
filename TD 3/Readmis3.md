@@ -22,6 +22,15 @@ SELECT ST_Centroid(geom) AS fire_point
 FROM parcels
 WHERE gid = 462273;
 ```
+```sql
+SELECT COUNT(*)
+FROM parcels
+WHERE ST_DWithin(
+    geom,
+    (SELECT ST_Centroid(geom) FROM parcels WHERE gid = 462273),
+    1000
+);
+```
 
 ---
 
